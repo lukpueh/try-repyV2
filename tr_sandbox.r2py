@@ -216,7 +216,7 @@ class Sandbox:
           error_message = "ThreadException: " + str(e) + \
             "\nCaution: Other threads could still be running!"
           self.my_log(error_message)
-          print "Exception: " + str(e)
+          log("Exception: " + str(e))
         self.thread_deregister()
         
       return waitforconn(ip, port, wrapped_callback_tcp)

@@ -302,7 +302,7 @@ def serve(http_request_dict):
     http_response_dict
   """ 
   # Print the http_request_dict to the console.
-  print http_request_dict
+  # log(http_request_dict)
   
   # The message that will be responded.
   message = ""
@@ -359,7 +359,7 @@ if callfunc == "initialize":
   try:
     port = int(callargs[0])
   except:
-    print "Needs argument <port number>!"
+    log("Needs argument <port number>!")
     
   else:
     #port = 63134
@@ -368,7 +368,7 @@ if callfunc == "initialize":
     # The locks handles race conditions when the user_dict is accessed.
     mycontext["lock_user_dict"] = createlock()
 
-    print "Webinterface available on:\nhttp://" + getmyip() + ":" + str(port)
+    log("Webinterface available on:\nhttp://" + getmyip() + ":" + str(port))
 
     # Run the server...
     httpserver_registercallback((getmyip(), port), serve)
