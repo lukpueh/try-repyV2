@@ -2,16 +2,15 @@
 
 if [ $# -ne 2 ]
   then
-    echo "Usage: $1 </abspath/to/seattle_repy> <serverport>" >&2
+    echo "Usage: $0 </path/to/seattle_repy> <serverport>" >&2
     exit 1
 fi
 
 if [ ! -d "$1" ]
   then
-    echo "Usage: $1 </abspath/to/seattle_repy> <serverport>" >&2
+    echo "Usage: $0 </path/to/seattle_repy> <serverport>" >&2
     exit 2
 fi
-
 
 echo "Copying files from build to seattle_repy directory..."
 cp build/* $1
