@@ -27,9 +27,9 @@
 
 ######
 # Global Imports: Everybody needs these libraries
-include base64.repy
-include tr_fileabstraction.repy 
-include tr_sandbox.repy 
+dy_import_module_symbols("tr_fileabstraction.r2py")
+dy_import_module_symbols("tr_sandbox.r2py")
+
 
 ######
 # Copy the current context before including libraries the user does
@@ -39,10 +39,9 @@ mycontext["clean_user_context"] = _context.copy()
 
 ######
 # Other Imports: Only the webcontroller should access these libraries
-
-include httpserver.repy
-include urllib.repy
-include random.repy
+dy_import_module_symbols("httpserver.r2py")
+dy_import_module_symbols("urllib.r2py")
+dy_import_module_symbols("random.r2py")
 
 
 def read_and_decode_form_data(datastream):
