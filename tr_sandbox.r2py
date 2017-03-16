@@ -59,17 +59,17 @@ class Sandbox:
     self.start_time = getruntime() - global_runtime
     
     self.log = {}
-    self.log_lock = getlock()
+    self.log_lock = createlock()
 
     self.tmp_logtime = ""
     self.tmp_output_buffer = ""
 
-    self.lock_output_buffer = getlock()
+    self.lock_output_buffer = createlock()
     
     # Used for thread accounting
     self.thread_count = 0
-    self.thread_lock = getlock()
-    self.thread_accounting_lock = getlock()
+    self.thread_lock = createlock()
+    self.thread_accounting_lock = createlock()
     
   
     
@@ -84,7 +84,7 @@ class Sandbox:
         The output which would be normally written to stdout.
 
     """   
-    self.log_lock.acquire()
+    self.log_lock.acquire(True)
     for arg in args:
       if arg != self:
         self.log[self.tmp_logtime]["output"] += str(arg) + " "
@@ -262,7 +262,7 @@ class Sandbox:
     # The last active not-main thread will release this lock.
     # Until then, the main (this) thread is blocked.
     if self.thread_count:
-      self.thread_lock.acquire()
+      self.thread_lock.acquire(True)
       self.thread_lock.release()
    
     # Read the remaining output buffer.
@@ -283,7 +283,7 @@ class Sandbox:
         The current output buffer.
 
     """   
-    self.lock_output_buffer.acquire()
+    self.lock_output_buffer.acquire(True)
     output = self.tmp_output_buffer
     self.tmp_output_buffer = ""
     self.lock_output_buffer.release()
@@ -300,7 +300,7 @@ class Sandbox:
         The output that would be usually written to stdout.
 
     """
-    self.lock_output_buffer.acquire()
+    self.lock_output_buffer.acquire(True)
     self.tmp_output_buffer += data
     self.lock_output_buffer.release()
 
@@ -328,9 +328,9 @@ class Sandbox:
       that the entire evaluation has terminated. 
 
     """
-    self.thread_accounting_lock.acquire()
+    self.thread_accounting_lock.acquire(True)
     if not self.thread_count:
-      self.thread_lock.acquire()
+      self.thread_lock.acquire(True)
     self.thread_count = self.thread_count + 1
     self.thread_accounting_lock.release()
     
@@ -344,7 +344,7 @@ class Sandbox:
       thread can signal terminated of the entire evaluation. 
 
     """
-    self.thread_accounting_lock.acquire()
+    self.thread_accounting_lock.acquire(True)
     self.thread_count = self.thread_count - 1
     if not self.thread_count:
       self.thread_lock.release()

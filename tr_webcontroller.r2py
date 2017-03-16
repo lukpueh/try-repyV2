@@ -117,7 +117,7 @@ def serve_user():
   """
   
   user_id = str(random_randint(0, 2**30))
-  mycontext["lock_user_dict"].acquire()
+  mycontext["lock_user_dict"].acquire(True)
   mycontext["user_dict"][user_id] = \
     Sandbox(user_id, mycontext['clean_user_context'].copy(), getruntime())
   mycontext["lock_user_dict"].release()
@@ -170,7 +170,7 @@ def serve_log(user_id):
   log_string = ""
   log_html = ""
   
-  mycontext["lock_user_dict"].acquire()
+  mycontext["lock_user_dict"].acquire(True)
   
   # log_dict format
   # log { "<logtime>" : { code" : "<code>", "output" : "<output>" }, .. }
@@ -366,7 +366,7 @@ if callfunc == "initialize":
     
     mycontext["user_dict"] = {}
     # The locks handles race conditions when the user_dict is accessed.
-    mycontext["lock_user_dict"] = getlock()
+    mycontext["lock_user_dict"] = createlock()
 
     print "Webinterface available on:\nhttp://" + getmyip() + ":" + str(port)
 
