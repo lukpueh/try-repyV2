@@ -12,11 +12,11 @@ if [ ! -d "$1" ]
     exit 2
 fi
 
-echo "Copying files from build to seattle_repy directory..."
+echo "Copying files from 'build' to 'seattle_repy' directory..."
 cp build/* $1
 echo "Changing to $1"
 cd $1
-echo "Executing tr_webcontroller.repy..."
+echo "Running: python repy.py restrictions.tryrepy dylink.r2py tr_webcontroller.r2py $2"
 python repy.py restrictions.tryrepy dylink.r2py tr_webcontroller.r2py $2
 
 exit 0
