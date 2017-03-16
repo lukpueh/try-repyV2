@@ -316,7 +316,7 @@ def serve(http_request_dict):
     
   # Serve current output buffer if user exists
   elif (http_request_dict["verb"].upper() == "GET") and \
-    http_request_dict["path"].startswith("/getOutput"):
+      http_request_dict["path"].startswith("/getOutput"):
     if exist_user(http_request_dict):
       message = serve_output_buffer(http_request_dict['querystr'])
     else:
@@ -324,7 +324,7 @@ def serve(http_request_dict):
     
   # Serve log if user exists
   elif (http_request_dict["verb"].upper() == "GET") and \
-    http_request_dict["path"].startswith("/getLog"):
+      http_request_dict["path"].startswith("/getLog"):
     user_id = exist_user(http_request_dict)
     if user_id:
       message = serve_log(http_request_dict['querystr'])
@@ -333,7 +333,7 @@ def serve(http_request_dict):
     
   # Called in index.html, instantiates new user id and returns a js variable
   elif (http_request_dict["verb"].upper() == "GET") and \
-    http_request_dict["path"].startswith("/js/tr_repy_user.js"):
+      http_request_dict["path"].startswith("/js/tr_repy_user.js"):
     message = serve_user()
   
   # This looks for the requested file in the vessel
