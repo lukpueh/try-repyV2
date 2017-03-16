@@ -42,20 +42,20 @@ body {
 
 #header {
   text-align: center;
-  
+
   width: 100%;
   height: 70px;
-  
+
   border: 1px solid white;
   border-bottom: 2px solid black;
-  
+
   background-image: -moz-linear-gradient(top, #FFFFFF, #ECECED);
 	background: -webkit-gradient(linear, 0 50%, 0 100%, from(#FFFFFF), to(#ECECED));
 }
 
 /***********************
 * NAVIGATION
-* Navigation table with JavaScript support to toggle appropriate elements 
+* Navigation table with JavaScript support to toggle appropriate elements
 * when clicked.
 ************************/
 
@@ -65,10 +65,10 @@ body {
 
 #toggle_bar td {
   text-align: center;
-  
+
   width: 135px;
   height: 40px;
-  
+
   border: 2px solid black;
   border-top: 0px;
 }
@@ -78,10 +78,10 @@ body {
 * In this DIV ace (java script) displays the text editor.
 ************************/
 
-#editor { 
+#editor {
   /* Position property is required in order to use the ACE editor */
-  position: absolute; 
-  
+  position: absolute;
+
   width: 50%;
   top: 130px;
   bottom: 60px;
@@ -97,18 +97,18 @@ body {
 *   snippet_container: repy code snippets (insert on click)
 *   option_container: Editor View Options
 *   readme_container: Usage Information
-    
+
 ************************/
 
 #right_box {
   /* Absolute, to stay consistent with the required editor positioning. */
   position: absolute;
   overflow: auto;
-  
+
   width: 48%;
   top: 130px;
   bottom: 60px;
-  
+
   left: 51%;
 }
 
@@ -158,7 +158,7 @@ body {
 #snippets td {
   padding: 20px;
 }
-  
+
 
 #snippets td:hover {
   font-size: larger;
@@ -181,13 +181,13 @@ body {
 #footer {
   /* Absolute, to stay consistent with the required editor positioning. */
   position: absolute;
-  
+
   width: 99%;
   height: 58px;
   bottom: 0px;
-  
+
   border-top: 2px solid black;
-  
+
   background-image: -moz-linear-gradient(bottom, #FFFFFF, #ECECED);
   background: -webkit-gradient(linear, 0 50%, 0 100%, from(#ECECED), to(#FFFFFF));
 }

@@ -18,11 +18,11 @@
 <html lang="en">
 
   <head>
-    
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>TryRepy</title>
-    
+
     <!-- Indocument Scripts needed for preload message. -->
     <script language="javascript">
       document.write("<div id='splash_page' style='font-weight:bold'> \
@@ -40,7 +40,7 @@
       }
     </script>
 
-    <!-- 
+    <!--
     Links all JS files but themes. Only statically linked theme is textmate
     theme. The other themes are linked dynamically in tr_repy.js to reduce
     loading time.
@@ -51,11 +51,11 @@
      charset="utf-8"></script>
     <script src="js/ace/theme-textmate.js" type="text/javascript"
      charset="utf-8"></script>
-     <script src="js/tr_repy_user.js" type="text/javascript" 
+     <script src="js/tr_repy_user.js" type="text/javascript"
      charset="utf-8"></script>
-    <script src="js/tr_repy.js" type="text/javascript" 
+    <script src="js/tr_repy.js" type="text/javascript"
      charset="utf-8"></script>
-    
+
     <link href="css/main.css" rel="stylesheet" type="text/css"
      media="screen"></link>
 
@@ -67,47 +67,47 @@
     <div id="header">
       <h1>Try Repy!</h1>
     </div>
-  
-    <!-- 
+
+    <!--
     OnClick calls toggle function in tr_repy.js.
     Shows toggled elemnt and changes style of clicked element and
     -->
     <table id="toggle_bar">
       <tr>
-        <td id="output_toggle" class="click_element" 
-         style="color: white; background: black" 
+        <td id="output_toggle" class="click_element"
+         style="color: white; background: black"
          onclick="toggle(this.id, 'output_container');">
           Standard Output
         </td>
-        <td id="log_toggle" class="click_element" 
+        <td id="log_toggle" class="click_element"
          onclick="toggle(this.id, 'log_container'); call_server_log();">
           Session Log
         </td>
-        <td id="file_toggle" class="click_element" 
+        <td id="file_toggle" class="click_element"
          onclick="toggle(this.id, 'file_container');">
           Insert Files
         </td>
-        <td id="character_toggle" class="click_element" 
+        <td id="character_toggle" class="click_element"
          onclick="toggle(this.id, 'character_container');">
           Special Characters
         </td>
-        <td id="snippet_toggle" class="click_element" 
+        <td id="snippet_toggle" class="click_element"
          onclick="toggle(this.id, 'snippet_container');">
           Code Snippets
         </td>
-        <td id="option_toggle" class="click_element" 
+        <td id="option_toggle" class="click_element"
          onclick="toggle(this.id, 'option_container');">
           Editor Options
         </td>
-        <td id="readme_toggle" class="click_element" 
+        <td id="readme_toggle" class="click_element"
          onclick="toggle(this.id, 'readme_container');">
           Read Me
         </td>
       </tr>
     </table>
-    
-    <!-- 
-    In this DIV the ace editor is places. The textdata is a static 
+
+    <!--
+    In this DIV the ace editor is places. The textdata is a static
     code snippet, to be show when the site is first loaded
     -->
     <div id="editor">for count in range (0, 10):
@@ -125,34 +125,34 @@
       readme_container: usage information
     -->
     <div id="right_box">
-      
-      <!-- 
+
+      <!--
       Shows current pseudo standard output of code evaluation.
       Is shown automatically when code is submitted.
       -->
       <div id="output_container" class="toggle_element">
         <h3>Standard Output</h3>
         <pre id="output">(here comes the output)</pre>
-      </div>  
+      </div>
 
       <!-- Shows the entire log of one Try Repy session.  -->
       <div id ="log_container" class="toggle_element" style="display:none">
         <h3>Session Log</h3>
         <div id="log">(here comes the log)</div>
       </div>
-      
+
       <!-- Insert local files into the editor window.  -->
       <div id ="file_container" class="toggle_element" style="display:none">
         <h3>Insert Files</h3>
-        
+
         <form name=file_form>
           <h4>Insertion Position</h4>
-          <input type="radio" id="insert_begin" 
+          <input type="radio" id="insert_begin"
            name="file_insert_mode" value="begin" checked>
           <label for="insert_begin">Insert at begin</label>
 
-          
-          <input type="radio" id="insert_cursor" 
+
+          <input type="radio" id="insert_cursor"
            name="file_insert_mode" value="cursor">
           <label for="insert_cursor">Insert at cursor</label>
 
@@ -160,7 +160,7 @@
           <table id="file_delim_table">
             <tr>
               <td>
-                <input type="radio" name="file_delim_mode" value="lines" 
+                <input type="radio" name="file_delim_mode" value="lines"
                  checked>
               </td>
               <td>
@@ -186,11 +186,11 @@
               </td>
             </tr>
           </table>
-          
+
           <h4>File Insertion</h4>
           <input type="button" value="+" onclick="append_file_input_row();">
           <input type="button" value="-" onclick="remove_file_input_row();">
-          <input type="button" value="insert files" 
+          <input type="button" value="insert files"
            onclick="process_file_form();">
           <table id="file_input_table">
             <tr id="input_row1">
@@ -199,75 +199,75 @@
               </td>
             </tr>
           </table>
-          
+
         </form>
-        
+
       </div>
-      
-      <!-- 
+
+      <!--
       Shows a table of special characters. On click, a character
-      is inserted to the editor window. This is usefull for 
+      is inserted to the editor window. This is usefull for
       mobile devices with virtual hierarchical keyboards.
       -->
       <div id="character_container" class="toggle_element" style="display:none">
         <h3>Special Characters</h3>
           (click'n'input)
-        
+
         <table id="characters">
           <tr>
             <td class="insert_element">[</td>
             <td class="insert_element">~</td>
             <td class="insert_element">^</td>
-          </tr>                 
-          <tr>                  
+          </tr>
+          <tr>
             <td class="insert_element">]</td>
             <td class="insert_element">;</td>
             <td class="insert_element">=</td>
-          </tr>                 
-          <tr>                  
+          </tr>
+          <tr>
             <td class="insert_element">{</td>
             <td class="insert_element">!</td>
             <td class="insert_element">%</td>
-          </tr>                 
-          <tr>                  
+          </tr>
+          <tr>
             <td class="insert_element">}</td>
             <td class="insert_element">`</td>
             <td class="insert_element">$</td>
-          </tr>                 
-          <tr>                  
+          </tr>
+          <tr>
             <td class="insert_element">/</td>
             <td class="insert_element">'</td>
             <td class="insert_element">+</td>
-          </tr>                 
-          <tr>                  
+          </tr>
+          <tr>
             <td class="insert_element">|</td>
             <td class="insert_element">´</td>
             <td class="insert_element">'''</td>
-          </tr>                 
-          <tr>                  
+          </tr>
+          <tr>
             <td class="insert_element">\</td>
             <td class="insert_element">#</td>
             <td class="insert_element">"""</td>
           </tr>
         </table>
       </div>
-      
-      <!-- 
+
+      <!--
       Shows a table of repy code snippets. On click, a snippet
       is inserted to the editor window.
-      
+
       XXX: Maybe these snippets ar going to be stored in an external file.
      -->
       <div id="snippet_container" class="toggle_element" style="display:none">
         <h3>Repy Code Snippets</h3>
         (click'n'input)
-        
+
         <table id="snippets">
           <tr>
             <td>
 <!-- Needs indention exceptions, since it is a PRE element. -->
 <pre class="insert_element">
-# To loop over two or more sequences at the same time, 
+# To loop over two or more sequences at the same time,
 # the entries can be paired with the zip() function.
 
 names = ['John', 'Mary', 'Paul']
@@ -283,7 +283,7 @@ for name, color in zip(names, answers):
 <pre class="insert_element">
 # UDP Listener
 #
-# This snippet listens for UDP messages. In order to receive 
+# This snippet listens for UDP messages. In order to receive
 # messages, who have to run a sender program e.g. the succeeding snippet
 # in another sandbox (Browser)
 
@@ -333,7 +333,7 @@ def process(remip, remport, so, thishandle, listenhandle):
     log("Conncection established.")
     log("Receiving: " + so.recv(512) )
     log("Closing connection...")
-    
+
 if callfunc == 'initialize':
     log ("Registering TCP listener... ")
     log ("Listening on " + getmyip() + ":12345 for 8 seconds ... ")
@@ -352,8 +352,8 @@ if callfunc == 'initialize':
 # TCP Sender
 #
 # This snippet establishes a TCP connection and sends messages.
-# To establish the connection someone has to listen for it. 
-# You can start the preceeding snippet in another sandbox (Browser), 
+# To establish the connection someone has to listen for it.
+# You can start the preceeding snippet in another sandbox (Browser),
 # to listen for the connection and the according bytestream.
 
 if callfunc == 'initialize':
@@ -368,8 +368,8 @@ if callfunc == 'initialize':
           </tr>
         </table>
       </div>
-      
-      <!-- 
+
+      <!--
         Shows a table of editor customizing options:
           theme
           font_size
@@ -381,12 +381,12 @@ if callfunc == 'initialize':
        -->
       <div id="option_container" class="toggle_element" style="display:none">
         <h3>Editor Options</h3>
-      
+
         <table id="options">
           <tr>
             <td>
               <label for="theme">Theme</label>
-              <select id="theme" size="1" 
+              <select id="theme" size="1"
                onChange="g_editor.setTheme(options[selectedIndex].value);">
                 <option value="ace/theme/textmate">
                   TextMate
@@ -399,13 +399,13 @@ if callfunc == 'initialize':
                 </option>
                 <option value="ace/theme/cobalt">
                   Cobalt
-                </option>     
+                </option>
                 <option value="ace/theme/crimson_editor">
                   Crimson Editor
-                </option>     
+                </option>
                 <option value="ace/theme/dawn">
                   Dawn
-                </option>       
+                </option>
                 <option value="ace/theme/eclipse">
                   Eclipse
                 </option>
@@ -448,7 +448,7 @@ if callfunc == 'initialize':
           <tr>
             <td>
               <label for="font_size">Font Size</label>
-              <select id="font_size" size="1" 
+              <select id="font_size" size="1"
                onChange="document.getElementById('editor').style.fontSize
                =options[selectedIndex].value;">
                 <option value="10px">10px</option>
@@ -463,7 +463,7 @@ if callfunc == 'initialize':
           </tr>
           <tr>
             <td>
-              <label for="show_hidden">Show Invisibles</label>      
+              <label for="show_hidden">Show Invisibles</label>
               <input type="checkbox" name="show_hidden" id="show_hidden"
                onChange="g_editor.setShowInvisibles(checked);">
             </td>
@@ -486,41 +486,41 @@ if callfunc == 'initialize':
           </tr>
           <tr>
             <td>
-              <label for="soft_tab">Use Soft Tab</label>      
+              <label for="soft_tab">Use Soft Tab</label>
               <input type="checkbox" id="soft_tab"
                onChange="g_editor.getSession().setUseSoftTabs(checked);" checked>
             </td>
           </tr>
           <tr>
             <td>
-              <label for="show_gutter">Show Gutter</label>     
+              <label for="show_gutter">Show Gutter</label>
               <input type="checkbox" id="show_gutter"
                onChange="g_editor.renderer.setShowGutter(checked);" checked>
             </td>
           </tr>
         </table>
       </div>
-      
+
       <!-- Usage Information for Try Repy  -->
       <div id ="readme_container" class="toggle_element" style="display:none">
         <h3>Read Me</h3>
         Try Repy is a web-based software development and execution environment
-        for Repy, which was implemented in the course of a bachelor seminar in 
-        the year 2011 at the research group of Future Communication at the 
+        for Repy, which was implemented in the course of a bachelor seminar in
+        the year 2011 at the research group of Future Communication at the
         University of Vienna.
-        
+
         <h4>Description</h4>
         <h5>Editor</h5>
-        The editor is always displayed on the left side. You can write 
-        Repy code to it and evaluate it on the server. To submit the code 
-        press cmd + return (mac), ctrl + return (win), or the submit button   
+        The editor is always displayed on the left side. You can write
+        Repy code to it and evaluate it on the server. To submit the code
+        press cmd + return (mac), ctrl + return (win), or the submit button
         beneath the editor window. Until the code has been evaluated, code
         submission is locked.
-  
+
         <h5>Callargs</h5>
         You can append space separated callarguments in the input line beneath
         the editor window, when submitting code.
-  
+
         <h5>Standard Output</h5>
         This displays the output of the program. It gives "real time" feedback.
 
@@ -529,12 +529,12 @@ if callfunc == 'initialize':
         evaluated code of a session
 
         <h5>Insert Files</h5>
-        Insert files to the editor window, whether at cursor position or at the 
-        top of the editor window. 
+        Insert files to the editor window, whether at cursor position or at the
+        top of the editor window.
 
         <h5>Special Characters</h5>
         Insert special characters at cursor position.
-        
+
         <h5>Code Snippets</h5>
         Insert code snippets at cursor position.
 
@@ -544,16 +544,16 @@ if callfunc == 'initialize':
         <h4>Known Issues</h4>
         <ul>
           <li>Print does not work, use log() instead.</li>
-          <li>Infinity Loops can only be stopped by shutting down the entire 
+          <li>Infinity Loops can only be stopped by shutting down the entire
             server.</li>
           <li>exitall() does not work.</li>
           <li>Thread Exceptions <br/>
             A thread exception in one thread does not exit the entire
             evaluation in a Virutal Namespace.  So far exceptions in a thread
-            are caught and logged but the execution of other healthy threads 
+            are caught and logged but the execution of other healthy threads
             continues.</li>
           <li>TCP/UDP listeners are not isolated. A listener registered on one
-          IP:PORT will override another listener, previously registered on this 
+          IP:PORT will override another listener, previously registered on this
           IP:PORT.</li>
         </ul>
 
@@ -561,39 +561,39 @@ if callfunc == 'initialize':
         <a target="blank" href="https://seattle.cs.washington.edu/wiki">
           Seattle Wiki
         </a><br/>
-        <a target="blank"   
+        <a target="blank"
           href="https://seattle.cs.washington.edu/wiki/ProgrammersPage">
           Repy Programming
         </a><br/>
-        <a target="blank" 
+        <a target="blank"
           href="https://seattle.cs.washington.edu/wiki/RepyApi">
           Repy API
         </a><br/><br/>
-        
-      </div>  
+
+      </div>
     </div>
 
-    <!-- 
+    <!--
     The footer contains:
-      buttons: 
+      buttons:
         submit code (also use "cmd+return") to evaluate on server
         clear code: clear editor window
-      user_callargs: input field to submit whitespace separated callarguments 
+      user_callargs: input field to submit whitespace separated callarguments
       about: mail-to-me, link to university of vienna's website
      -->
     <div id="footer">
-      
+
       <label id='label_callargs' for="user_callargs">Call Arguments:</label>
       <input type="text" id="user_callargs">
-      
+
       <div id="buttons">
-          <!-- 
+          <!--
           <input type="button" value="submit code" id="submit_button"
           onclick="deregisterSubmitCode(), call_server_evaluate(this);
-          toggle('output_toggle', 'output_container');"> 
-          --> 
+          toggle('output_toggle', 'output_container');">
+          -->
         <input type="button" value="submit code" id="submit_button"
-         onclick="call_server_evaluate(this); 
+         onclick="call_server_evaluate(this);
          toggle('output_toggle', 'output_container'); ">
 
         <input type="button" value="clear code"
