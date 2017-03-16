@@ -1,6 +1,6 @@
 # Try RepyV2!
 
-Try Repy was implemented as a web-based software development and execution environment for Repy, in the course of a bachelor seminar at the research group of Future Communication at the University of Vienna in 2011.
+Try Repy was implemented as a web-based software development and execution environment for Repy in the course of a bachelor seminar at the research group of Future Communication, University of Vienna, 2011.
 
 This repository contains a port of Try Repy to run on RepyV2 powered [Seattle](https://github.com/SeattleTestbed/docs) and [Sensibility](https://github.com/SensibilityTestbed/instructions) Testbed nodes.
 
@@ -30,21 +30,22 @@ Make sure to have downloaded and unzipped [`seash`, the experiment manager](http
 # In try-repyV2
 ./tr_build.sh <path/to/sensibility-testbed-demokit>
 ```
-Follow the [seash instructions](https://github.com/SensibilityTestbed/instructions/blob/master/seash_intro.md) to start the seash console load your cryptographic keys, find available vessels and set an active target. Once you've done all of that, you just have to upload the `Try RepyV2!` files and start the web controller using the following `seash` commands:
+Follow the [seash instructions](https://github.com/SensibilityTestbed/instructions/blob/master/seash_intro.md) to start the seash console, load your cryptographic keys, find available vessels and set an active target. Once you've done all of that, you just have to upload the `Try RepyV2!` files and start the web controller using the following `seash` commands:
 
 ```shell
 # In the seash console
 user@%all !> uploaddir <path/to/try-repyV2/build>
 user@%all !> start dylink.r2py tr_webcontroller.r2py <connport as shown by the seash command `show resources`>
 user@%all !> show log
+
 # You should see something like:
 Log from '<remote node IP>:1224:v1':
 ========================================
 Running program: dylink.r2py
-Arguments: ['tr_webcontroller.r2py', '63105']
+Arguments: ['tr_webcontroller.r2py', '<the port specified above>']
 ========================================
 Webinterface available on:
-http://<remote note IP>:63105
+http://<remote note IP>:<the port specified above>
 ```
 
 ## Links
