@@ -244,7 +244,7 @@ class Sandbox:
     try:
       # Create a new VirtualNamespace for the code
       # and evaluate it in the Sandboxes context.
-      tmp_virt = VirtualNamespace(user_code)
+      tmp_virt = createvirtualnamespace(user_code, "tryrepy")
       tmp_virt.evaluate(self.context)
       
     except Exception, e:
