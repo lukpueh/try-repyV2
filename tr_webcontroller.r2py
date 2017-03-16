@@ -275,7 +275,7 @@ def serve_file(virtual_path):
   
   # Calling functions in tr_fileabstraction.repy
   tmp_file = tr_open("system", virtual_path)
-  content_file = tmp_file.read()
+  content_file = tmp_file.readat(None, 0)
   tmp_file.close()
     
   return content_file

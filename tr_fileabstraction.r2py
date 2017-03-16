@@ -84,7 +84,8 @@ def tr_listdir(user):
   
   return file_list_user
 
-def tr_open(user, virtual_path, mode="r"):
+
+def tr_open(user, virtual_path, mode=False):
   """
   <Purpose>
     Emulates repy's open() method. 
@@ -94,8 +95,10 @@ def tr_open(user, virtual_path, mode="r"):
     virtual_path (string)
       the path which will be prefixed with the user name and
       b64 encoded before it is safed to the vessel.
-    mode (string)
-      (optional, default is read)
+    create (boolean)
+      A Boolean flag which specifies if the file should be created
+      if it does not exist.   If the file exists, this flag has no effect.
+      (optional, default is false)
   <Exceptions>
     IOError
      if the file does not exist and is opened in wrong mode.
@@ -107,8 +110,8 @@ def tr_open(user, virtual_path, mode="r"):
   encoded_path = encoded_path.replace('=', '.')
   
   try:
-    return open(encoded_path, mode)
-  except Exception:
+    return openfile(encoded_path, mode)
+  except Exception as e:
     raise IOError("Exception (with type 'exceptions.IOError'): [Errno 2] " \
           + "No such file or directory: '" + virtual_path + "'")
   
